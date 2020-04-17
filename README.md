@@ -5,8 +5,8 @@ This Library implements some of nice Functions of [Kotlin](https://kotlinlang.or
 
 ## Scope Functions
 
-The Extension Functions of a generic type are implemented in the [GeneralExtensions class](./KtolinSharp/GeneralExtensions.cs)
-
+The Extension Functions of a generic type are implemented in the [GeneralExtensions class](./KolinSharp/GeneralExtensions.cs)
+t
 All standalone functions are in the *"Kotlin"* class named [K](./KotlinSharp/K.cs)
 
 ## Examples
