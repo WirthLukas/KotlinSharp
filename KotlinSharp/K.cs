@@ -37,7 +37,7 @@ namespace KotlinSharp
         }*/
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static R Synchronized<R>(object locker, Func<R> block)
+        public static TResult Synchronized<TResult>(object locker, Func<TResult> block)
         {
             lock (locker)
             {
@@ -46,14 +46,9 @@ namespace KotlinSharp
         }
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static R With<T, R>(T receiver, Func<T, R> block) => block(receiver);
+        public static TResult With<T, TResult>(T receiver, Func<T, TResult> block) => block(receiver);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void With<T>(T receiver, Action<T> block) => block(receiver);
-
-        public static void TODO(string reason = "")
-        {
-            throw new NotImplementedException(reason);
-        }
     }
 }

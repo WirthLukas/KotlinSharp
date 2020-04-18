@@ -6,7 +6,7 @@ This Library implements some of nice Functions of [Kotlin](https://kotlinlang.or
 ## Scope Functions
 
 The Extension Functions of a generic type are implemented in the [GeneralExtensions class](./KolinSharp/GeneralExtensions.cs)
-t
+
 All standalone functions are in the *"Kotlin"* class named [K](./KotlinSharp/K.cs)
 
 ## Examples
@@ -14,6 +14,9 @@ All standalone functions are in the *"Kotlin"* class named [K](./KotlinSharp/K.c
 You can find all of these examples and more in the [ConsoleTests Project](./KotlinSharp/ConsoleTests).
 
 ### Singleton
+
+Normally a implementation of a Singleton
+
 ```csharp
 public class Repository
 {
@@ -21,7 +24,7 @@ public class Repository
     private static readonly object Locker = new object();
 
     // Normally a Instance Property
-    public static Repository CommomInstanceCall
+    public static Repository Instance
     {
         get 
         {
@@ -38,17 +41,29 @@ public class Repository
         }
     }
 
-    // With Methods from the Kotlin implementation
-    public static Repository Instance
-        => _instance ?? K.Synchronized(Locker, 
-            () => _instance ?? Build().Also(it => _instance = it));
-
     // Example Build Method
     private static Repository Build() => new Repository();
 
     private Repository()
     {}
 }
+```
+
+Implementation in Kotlin Style
+
+```csharp
+
+public static Repository Instance
+    => _instance ?? K.Synchronized(Locker, 
+        () => _instance ?? Build().Also(it => _instance = it));
+
+```
+
+Implementation with C# 8 ??= Operator
+
+```csharp
+public static Repository InstanceX 
+    => _instance ?? K.Synchronized(Locker, () => _instance ??= Build());
 ```
 
 ### Example Console Program
@@ -59,9 +74,9 @@ class Program
     static void Main(string[] args)
     {
         string? test = null;
-        Console.WriteLine($"Nullable: {test.ToStringK()}");
+        Console.WriteLine($"Nullable: {test.ToStringK()}");     // Writes "Nullable: null"; raises no Exception!
         test = "with a value";
-        Console.WriteLine($"Nullable: {test.ToStringK()}");
+        Console.WriteLine($"Nullable: {test.ToStringK()}");     // Writes "Nullable: with a value"
 
         /*long length = new FileStream("test.txt", FileMode.OpenOrCreate).Use(fs =>
         {

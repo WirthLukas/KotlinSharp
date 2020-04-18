@@ -7,7 +7,7 @@ namespace ConsoleTests
         private static Repository? _instance = null;
         private static readonly object Locker = new object();
 
-        public static Repository CommomInstanceCall
+        public static Repository CommonInstanceCall
         {
             get 
             {
@@ -27,7 +27,12 @@ namespace ConsoleTests
         // With Methods from the Kotlin implementation
         public static Repository Instance
             => _instance ?? K.Synchronized(Locker, 
-                () => _instance ?? Build().Also(it => _instance = it));
+                () => _instance ?? Build()
+                    .Also(it => _instance = it));
+
+        public static Repository InstanceX
+            => _instance ?? K.Synchronized(Locker, () => _instance ??= Build());
+
 
         private static Repository Build() => new Repository();
 
