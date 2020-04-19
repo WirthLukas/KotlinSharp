@@ -1,7 +1,8 @@
 # KotlinSharp
 
 This Library implements some of nice Functions of [Kotlin](https://kotlinlang.org/) in C#.
-**I used the .Net Core 3.1 Framework** with [nullable types](https://docs.microsoft.com/en-us/archive/msdn-magazine/2018/february/essential-net-csharp-8-0-and-nullable-reference-types)
+**I used the .Net Core 3.1 Framework** with [nullable types](https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references)
+([article in msdn-magazine](https://docs.microsoft.com/en-us/archive/msdn-magazine/2018/february/essential-net-csharp-8-0-and-nullable-reference-types)).
 
 ## Scope Functions
 
